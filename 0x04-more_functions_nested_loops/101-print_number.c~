@@ -1,0 +1,38 @@
+#include "main.h"
+
+/**
+ * print_number - Prints a square, followed by a new line.
+ * @n: The integer parameter.
+ *
+ * Return: void
+ */
+
+void print_number(int n)
+{
+	int i, j, count, pro, p, num;
+
+	count = 0;
+	pro = 1;
+
+	if (n >= 0)
+		num = n;
+	else
+		num = n * -1;
+
+	for (i = 1; i <= num; i = i * 10)
+		count += 1;
+
+	for (j = 1; j < count; j++)
+		pro *= 10;
+
+	if (n < 0)
+		_putchar('-');
+
+	while (pro != 0)
+	{
+		p = num / pro;
+		p = p % 10;
+		_putchar(p + 48);
+		pro = pro / 10;
+	}
+}

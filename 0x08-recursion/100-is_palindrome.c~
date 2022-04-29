@@ -1,0 +1,66 @@
+#include "main.h"
+
+int new(char *str, char *abc, int n);
+
+/**
+ * is_palindrome - a function check if a string is a palindrome.
+ * @s: The string to be printed.
+ *
+ * Return: 1 if a string is a palindrome
+ * Otherwise: 0
+ */
+
+int is_palindrome(char *s)
+{
+	int len;
+	if (*s == '\0')
+		return (0);
+	len = _strlen_recursion(s);
+	return (new(s, s + len - 1, len));
+}
+
+/**
+ * _strlen - A function that returns the length of a string.
+ * @s: The string to be printed.
+ *
+ * Return: void
+ */
+
+int _strlen_recursion(char *s)
+{
+	if (*s == '\0')
+		return (0);
+	return (1 + _strlen_recursion(s + 1));
+}
+
+/**
+ * new - a function check if a string is a palindrome.
+ * @str: The string to be checked.
+ * @abc: The string to be checked.
+ * @n: the length of s string.
+ *
+ * Return: 1 if a string is a palindrome
+ * Otherwise: 0
+ */
+
+int new(char *str, char *abc, int n)
+{
+	static int sum = 0;
+
+	if (*str == *abc && *str != '\0')
+		sum++;
+	if (*str == '\0')
+	{
+		if (n == sum)
+		{
+			sum = 0;
+			return (1);
+		}
+		else
+		{
+			sum = 0;
+			return (0);
+		}
+	}
+	return (new(str + 1, abc - 1, n));
+}
