@@ -1,5 +1,3 @@
-nes (42 sloc)  768 Bytes
-  
 #include <stdlib.h>
 
 /**
