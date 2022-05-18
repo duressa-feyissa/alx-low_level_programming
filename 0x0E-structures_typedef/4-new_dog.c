@@ -1,6 +1,6 @@
 #include "dog.h"
 #include <stdlib.h>
-
+#pragma pack(1)
 /**
  * new_dog - a function that creates a new dog.
  * @name: Pointer to name member
