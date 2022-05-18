@@ -1,5 +1,6 @@
 #ifndef _DOG_
 #define _DOG_
+#pragma pack(1)
 
 /**
  * struct dog - Define a new type struct dog
