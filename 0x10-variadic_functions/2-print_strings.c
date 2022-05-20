@@ -2,6 +2,13 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+/**
+ * print_strings: a function that prints strings, followed by a new line. 
+ * @n: number of argument
+ * @separator: Pointer to string
+ * Return: Void
+ */
+
 void print_strings(const char *separator, const unsigned int n, ...)
 {
 	unsigned int i;
