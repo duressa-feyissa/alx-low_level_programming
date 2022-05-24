@@ -12,17 +12,16 @@
 
 void free_listint2(listint_t **head)
 {
-	listint_t *ptr;
-
-	ptr = *head;
-	if (ptr)
+	listint_t *p;
+	p = *head;
+	if (p)
 	{
-		if (ptr->next)
+		if (p->next)
 		{
-			ptr = ptr->next;
-			free_listint2(&ptr);
+			p = p->next;
+			free_listint2(&p);
 		}
-		free(ptr);
+		free(*head);
 	}
 	*head = NULL;
 }
