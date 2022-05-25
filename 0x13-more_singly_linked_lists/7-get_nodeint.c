@@ -1,8 +1,6 @@
 #include "lists.h"
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
-#include "lists.h"
 
 /**
  *get_nodeint_at_index - return nth node of the list
@@ -12,23 +10,23 @@
  *Return: pointer
  */
 
-
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-	listint_t *tmp;
 	unsigned int i = 0;
+	listint_t *p;
 
-	tmp = head;
+	if (head == NULL)
+		return (0);
 
-	if (tmp == NULL)
-		return (NULL);
-
-	while (tmp != NULL)
+	if (index == 0)
+		return (head);
+	p = head;
+	while (p)
 	{
 		if (i == index)
-			return (tmp);
+			return (p);
 		i++;
-		tmp = tmp->next;
+		p = p->next;
 	}
-	return (tmp);
+	return (NULL);
 }
