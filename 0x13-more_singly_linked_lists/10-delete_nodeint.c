@@ -4,45 +4,40 @@
 #include "lists.h"
 
 /**
- *delete_nodeint_at_index - delete node at given position
- *@head: double pointer to head
- *@index: given position to delete
- *
- *Return: 1 if it succeeded
+ * delete_nodeint_at_index - A function that deletes the node at index.
+ * @head: Pointer
+ * @index: Index starts at 0
+ * Return: 1 if it succeeded, -1 if it failed.
  */
-
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-listint_t *tmp, *node;
-unsigned int i = 0;
+	unsigned int i;
+	listint_t *p, *temp;
 
-tmp = *head;
+	if (*head == NULL || head == NULL)
+		return (-1);
 
-if (*head == NULL || head == NULL)
-return (-1);
+	p = *head;
+	i = 0;
 
-if (index == 0)
-{
-tmp = (*head)->next;
-free(*head);
-*head = tmp;
-return (1);
-}
+	if (index == 0)
+	{
+		*head = p->next;
+		free(p);
+		p = NULL;
+		return (1);
+	}
 
-while (i < index && tmp)
-{
-node = tmp;
-tmp = tmp->next;
-i++;
-}
-
-if (tmp != NULL)
-{
-node->next = tmp->next;
-free(tmp);
-return (1);
-}
-
-return (-1);
+	while ((i < index - 1) && p)
+	{
+		p = p->next;
+		if (p == NULL)
+			return (-1);
+		i++;
+	}
+	temp = p->next;
+	p->next = temp->next;
+	free(temp);
+	return (1);
 }
