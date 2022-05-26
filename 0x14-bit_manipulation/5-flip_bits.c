@@ -9,7 +9,7 @@
 
 unsigned int check(unsigned int a)
 {
-	unsigned int sum;
+	int sum;
 
 	sum = 0;
 	while (a > 0)
