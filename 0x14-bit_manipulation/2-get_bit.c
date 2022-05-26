@@ -9,31 +9,16 @@
 
 int get_bit(unsigned long int n, unsigned int index)
 {
-	int j, *A, i;
-	unsigned int k, m;
-	unsigned long int num;
+	unsigned int i;
 
 	if (index > 64)
-		return (1);
-	num = n;
-	for (j = 0; n != 0; n = n / 2)
-		j++;
+		return (-1);
 
-	A = malloc(sizeof(int) * j);
-
-	for (i = 0; num != 0; num = num / 2)
+	for (i = 0; i < 64; i++)
 	{
-		A[i] = num % 2;
-		i++;
+		if (i == index)
+			return (n & 1);
+		n = n >> 1;
 	}
-
-	m = (unsigned int)j;
-	for (k = 0; k < m; k++)
-	{
-		if (index == k)
-		{
-			break;
-		}
-	}
-	return (A[k]);
+	return (-1);
 }
