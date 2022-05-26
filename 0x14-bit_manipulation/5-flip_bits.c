@@ -1,17 +1,16 @@
 #include "main.h"
 
 /**
- * flip_bits - A function count number of bits you would need to flip.
- * @n: number
- * @m: number
+ * check - find number of bits flipped
+ * @a: Number
+ *
  * Return: the number of bits flipped.
  */
 
-unsigned int flip_bits(unsigned long int n, unsigned long int m)
+unsigned int check(unsigned int a)
 {
-	unsigned int a, sum;
+	unsigned int sum;
 
-	a = (n ^ m);
 	sum = 0;
 	while (a > 0)
 	{
@@ -22,4 +21,16 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		a = a >> 1;
 	}
 	return (sum);
+}
+
+/**
+ * flip_bits - A function count number of bits you would need to flip.
+ * @n: number
+ * @m: number
+ * Return: the number of bits flipped.
+ */
+
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
+{
+	return (check(n ^ m));
 }
