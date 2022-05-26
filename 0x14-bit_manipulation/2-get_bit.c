@@ -20,8 +20,6 @@ int get_bit(unsigned long int n, unsigned int index)
 		j++;
 
 	A = malloc(sizeof(int) * j);
-	if (A == NULL)
-		return (-1);
 
 	for (i = 0; num != 0; num = num / 2)
 	{
@@ -40,5 +38,5 @@ int get_bit(unsigned long int n, unsigned int index)
 			}
 		}
 	}
-	return (0);
+	return (-1);
 }
