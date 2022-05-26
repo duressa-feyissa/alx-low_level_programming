@@ -13,8 +13,8 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned int k, m;
 	unsigned long int num;
 
-	if ((n == 1 || n == 0) && index == 0)
-		return (n);
+	if (index > sizeof(n) * BIT_SIZE - 1)
+		return (-1);
 	num = n;
 	for (j = 0; n != 0; n = n / 2)
 		j++;
