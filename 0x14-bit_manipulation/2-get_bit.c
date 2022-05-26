@@ -13,8 +13,8 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned int k, m;
 	unsigned long int num;
 
-	if (index < 64 && n == 0)
-		return (0);
+	if (index > 64)
+		return (1);
 	num = n;
 	for (j = 0; n != 0; n = n / 2)
 		j++;
@@ -28,15 +28,12 @@ int get_bit(unsigned long int n, unsigned int index)
 	}
 
 	m = (unsigned int)j;
-	if (index < m)
+	for (k = 0; k < m; k++)
 	{
-		for (k = 0; k < m; k++)
+		if (index == k)
 		{
-			if (index == k)
-			{
-				return (A[k]);
-			}
+			break;
 		}
 	}
-	return (-1);
+	return (A[k]);
 }
