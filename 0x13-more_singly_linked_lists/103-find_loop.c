@@ -18,6 +18,8 @@ listint_t *find_listint_loop(listint_t *head)
 	fast = (void *)head;
 	slow = (void *)head;
 
+	if (!head)
+		return (NULL);
 	while (fast->next && fast->next->next && slow)
 	{
 		fast = fast->next->next;
