@@ -14,7 +14,7 @@ unsigned int check(unsigned int a)
 	sum = 0;
 	while (a > 0)
 	{
-		if ((x & 1) == 1)
+		if ((a & 1) == 1)
 		{
 			sum += 1;
 		}
