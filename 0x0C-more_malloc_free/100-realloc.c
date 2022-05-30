@@ -36,12 +36,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	else
 	{
-		str = malloc(new_size);
-		if (str == NULL)
-		{
-			free(str);
-			return (NULL);
-		}
+		return (malloc(new_size));
 	}
 	filler1 = ptr, filler2 = str;
 	while (i++ < (sizeof(ptr) / old_size))
