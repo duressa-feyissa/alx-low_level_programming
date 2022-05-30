@@ -35,12 +35,21 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 
 	filler1 = ptr;
-	while ((i++) < old_size)
-		filler2[i] = filler1[i];
 	if (new_size < old_size)
 	{
-		while ((j++) < (new_size))
-			filler2[j + i] = 0;
+		while (i < (new_size))
+		{
+			filler2[i] = filler1[i];
+			i++;
+		}
+	}
+	if (new_size > old_size)
+	{
+		while (j < (old_size))
+		{
+			filler2[j] = 0;
+			j++;
+		}
 	}
 	free(ptr);
 	return (filler2);
