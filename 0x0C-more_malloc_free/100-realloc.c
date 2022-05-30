@@ -13,7 +13,6 @@
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *str;
 	char *filler1, *filler2;
 	unsigned int i = 0, j = 0;
 
@@ -25,27 +24,24 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		free(ptr);
 		return (NULL);
 	}
-	if (ptr != NULL)
-	{
-		str = malloc(new_size);
-		if (str == NULL)
-		{
-			free(str);
-			return (NULL);
-		}
-	}
-	else
-	{
+
+	if (!ptr)
 		return (malloc(new_size));
+
+	filler2 = malloc(new_size);
+	if (filler2 == NULL)
+	{
+		return (NULL);
 	}
-	filler1 = ptr, filler2 = str;
-	while (i++ < old_size)
+
+	filler1 = ptr;
+	while ((i++) < old_size)
 		filler2[i] = filler1[i];
 	if (new_size < old_size)
 	{
-		while (j++ < (new_size))
+		while ((j++) < (new_size))
 			filler2[j + i] = 0;
 	}
 	free(ptr);
-	return (str);
+	return (filler2);
 }
