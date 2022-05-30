@@ -27,7 +27,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	if (ptr != NULL)
 	{
-		str = malloc(old_size * new_size);
+		str = malloc(new_size);
 		if (str == NULL)
 		{
 			free(str);
@@ -39,11 +39,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (malloc(new_size));
 	}
 	filler1 = ptr, filler2 = str;
-	while (i++ < (sizeof(ptr) / old_size))
+	while (i++ < old_size)
 		filler2[i] = filler1[i];
 	if (new_size < old_size)
 	{
-		while (j++ < (sizeof(ptr) / new_size))
+		while (j++ < (new_size))
 			filler2[j + i] = 0;
 	}
 	free(ptr);
