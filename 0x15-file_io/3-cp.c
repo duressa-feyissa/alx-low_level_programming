@@ -29,7 +29,7 @@ int main(int ac, char **av)
 	}
 	read(fd, ptr, 1024);
 	close(fd);
-	fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0600);
 	if (fd < 0)
 	{
 	dprintf(STDERR_FILENO, "Error: Can't write to NAME_OF_THE_FILE\n");
