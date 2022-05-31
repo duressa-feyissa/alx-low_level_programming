@@ -26,16 +26,16 @@ int main(int ac, char **av)
 	}
 	s = read(fd1, ptr, BUFSIZ);
 	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd2 == -1)
+	t = write(fd2, ptr, s);
+	if ((fd2 < 0) || (t != s))
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
-	t = write(fd2, ptr, s);
-	if (t != s)
+	if (s < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-		exit(99);
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+	exit(98);
 	}
 	a = close(fd1),	b = close(fd2);
 	if (a < 0 || a < 0)
