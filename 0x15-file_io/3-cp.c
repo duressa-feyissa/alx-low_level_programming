@@ -25,8 +25,6 @@ int main(int ac, char **av)
 	exit(98);
 	}
 	s = read(fd1, ptr, BUFSIZ);
-	if (s < 0)
-		goto label;
 	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd2 == -1)
 	{
