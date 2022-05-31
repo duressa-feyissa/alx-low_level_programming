@@ -18,7 +18,6 @@ int main(int ac, char **av)
 		dprintf(STDERR_FILENO, "cp file_from file_to\n");
 		exit(97);
 	}
-
 	fd1 = open(av[1], O_RDONLY);
 	if (fd1 < 0)
 	{
@@ -26,6 +25,8 @@ int main(int ac, char **av)
 	exit(98);
 	}
 	s = read(fd1, ptr, BUFSIZ);
+	if (s < 0)
+		goto label;
 	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd2 == -1)
 	{
@@ -38,13 +39,12 @@ int main(int ac, char **av)
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
-	a = close(fd1);
-	b = close(fd2);
-	if (a !=  0 || a != 0)
+	a = close(fd1),	b = close(fd2);
+	if (a < 0 || a < 0)
 	{
-		if (a != 0)
+		if (a < 0)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
-		if (b != 0)
+		if (b < 0)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
 		exit(100);
 	}
