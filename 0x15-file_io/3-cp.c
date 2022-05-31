@@ -18,10 +18,10 @@ int main(int ac, char **av)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
 	ptr = malloc(sizeof(char) * 1024);
-
-	fd = open(av[1], O_RDONLY);
+	if (ptr == NULL)
+		retur (0);
+	fd = open(av[1], O_WRONLY);
 	if (fd < 0)
 	{
 	dprintf(STDERR_FILENO, "Error: Can't read from file NAME_OF_THE_FILE\n");
