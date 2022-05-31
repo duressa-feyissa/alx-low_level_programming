@@ -20,8 +20,8 @@ int main(int ac, char **av)
 	}
 	ptr = malloc(sizeof(char) * 1024);
 	if (ptr == NULL)
-		retur (0);
-	fd = open(av[1], O_WRONLY);
+		return (0);
+	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 	{
 	dprintf(STDERR_FILENO, "Error: Can't read from file NAME_OF_THE_FILE\n");
