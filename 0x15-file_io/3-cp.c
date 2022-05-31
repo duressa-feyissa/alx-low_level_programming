@@ -10,43 +10,42 @@
  */
 int main(int ac, char **av)
 {
-	int fd, t;
-	char *ptr;
+	int fd1, fd2, t, s, a, b;
+	char ptr[BUFSIZ];
 
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp %s %s\n", av[1], av[2]);
 		exit(97);
 	}
-	ptr = malloc(1024);
-	if (ptr == NULL)
-		return (0);
-	fd = open(av[1], O_RDWR);
-	if (fd < 0)
+
+	fd1 = open(av[1], O_RDONLY);
+	if (fd1 < 0)
 	{
-	dprintf(STDERR_FILENO, "Error: Can't read from file NAME_OF_THE_FILE\n");
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 	exit(98);
 	}
-	read(fd, ptr, 1024);
-	close(fd);
-	fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0600);
-	if (fd < 0)
+	s = read(fd1, ptr, 1024);
+	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (fd2 == -1)
 	{
-	dprintf(STDERR_FILENO, "Error: Can't write to NAME_OF_THE_FILE\n");
-	exit(99);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+		exit(99);
 	}
-	t = write(fd, ptr, 1024);
-	if (t < 0)
+	t = write(fd2, ptr, s);
+	if (t != s)
 	{
-	free(ptr);
-	dprintf(STDERR_FILENO, "Error: Can't write to NAME_OF_THE_FILE\n");
-	exit(99);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+		exit(99);
 	}
-	close(fd);
-	free(ptr);
-	if (!fd)
+	a = close(fd1);
+	b = close(fd2);
+	if (a !=  0 || a != 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd FD_VALUE\n");
+		if (a != 0)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
+		if (b != 0)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
 		exit(100);
 	}
 	return (0);
