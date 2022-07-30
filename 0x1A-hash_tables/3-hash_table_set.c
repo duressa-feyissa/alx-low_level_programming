@@ -13,12 +13,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int num;
 	char *temp;
 
+	if (ht == NULL)
+		return (0);
+
 	temp = (char *)key;
 
 	if (strlen(temp) == 0)
-		return (0);
-
-	if (ht == NULL)
 		return (0);
 
 	num = key_index((unsigned char *)key, ht->size);
@@ -28,7 +28,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	ht->array[num]->key = temp;
 	ht->array[num]->value = strdup(value);
-	ht->array[num]->next = ht->array[num];
+	ht->array[num]->next = NULL;
 
 	return (1);
 }
