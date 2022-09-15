@@ -3,6 +3,7 @@
 Island Perimeter
 """
 
+
 def island_perimeter(grid):
     """returns the perimeter of the island described in grid
     Args:
@@ -12,6 +13,7 @@ def island_perimeter(grid):
         for the lake's nearest neighbor
         then return the total length
     """
+
     perim = 0
     srow = len(grid)
     for row in range(srow):
